@@ -1,4 +1,4 @@
-import 'package:flutter/material.dart';
+import 'package:material_ui/material_ui.dart';
 
 class ProfileScreen extends StatefulWidget {
   const ProfileScreen({super.key});
@@ -10,10 +10,22 @@ class ProfileScreen extends StatefulWidget {
 class _ProfileScreenState extends State<ProfileScreen> {
   //TODO 1 variabel
   bool isSignedIn = false;
-  String FullName = "";
-  String userName = "";
+  String FullName = "Angga";
+  String userName = "anggoyys";
   int favoriteCandiCount = 0;
 
+  void signIn(){
+    setState(() {
+      isSignedIn = true;
+    });
+  }
+
+  void signOut(){
+    setState(() {
+      isSignedIn = false;
+    });
+  }
+  
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -65,9 +77,38 @@ class _ProfileScreenState extends State<ProfileScreen> {
                     Text("Pengguna", style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold)),
                   ],),
                 ),
-                Text('$userName', style: TextStyle(fontSize: 18),)
+                Expanded(child: Text(' : $userName', style: TextStyle(fontSize: 18),))
               ],
-
+              ),
+              SizedBox(height: 4,),
+              Divider(color: Colors.deepPurple,),
+              Row(
+                children: [
+                  SizedBox(
+                    width: MediaQuery.of(context).size.width/3,
+                    child: Row(children: [
+                      Icon(Icons.person, color: Colors.blue,),
+                      SizedBox(width: 8,),
+                      Text("Nama", style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),)
+                    ],),
+                  ),
+                  Expanded(child: Text(' : $FullName', style: TextStyle(fontSize: 18),)),
+                  if(isSignedIn) const Icon(Icons.edit)
+                ],
+              ),
+              SizedBox(height: 4,),
+              Divider(color: Colors.deepPurple,),
+              Row(
+                children: [
+                  SizedBox(
+                    width: MediaQuery.of(context).size.width/3,
+                    child: Row(children: [
+                      Icon(Icons.favorite, color: Colors.blue,),
+                      SizedBox(width: 8,),
+                      Text("Favorit", style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),)
+                    ],)
+                  ),
+                ],
               )
             ],
             
