@@ -1,4 +1,4 @@
-import 'package:material_ui/material_ui.dart';
+import 'package:flutter/material.dart';
 
 class ProfileScreen extends StatefulWidget {
   const ProfileScreen({super.key});
@@ -8,24 +8,10 @@ class ProfileScreen extends StatefulWidget {
 }
 
 class _ProfileScreenState extends State<ProfileScreen> {
-  //TODO 1 variabel
-  bool isSignedIn = false;
-  String FullName = "Angga";
+  String fullName = "Angga";
   String userName = "anggoyys";
   int favoriteCandiCount = 0;
 
-  void signIn(){
-    setState(() {
-      isSignedIn = true;
-    });
-  }
-
-  void signOut(){
-    setState(() {
-      isSignedIn = false;
-    });
-  }
-  
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -56,8 +42,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                           backgroundImage: AssetImage('images/placeholder_image.png'),
                         ),
                       ),
-                      if(isSignedIn)
-                        IconButton(
+                      IconButton(
                           onPressed: () {
                   
                           },
@@ -68,17 +53,21 @@ class _ProfileScreenState extends State<ProfileScreen> {
                 ),
               ),
               //Todo 3 Profile Info
-              Row(children: [
-                SizedBox(
-                  width: MediaQuery.of(context).size.width,
-                  child: Row(children: [
-                    Icon(Icons.lock, color: Colors.deepOrange,),
-                    SizedBox(width: 8,),
-                    Text("Pengguna", style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold)),
-                  ],),
-                ),
-                Expanded(child: Text(' : $userName', style: TextStyle(fontSize: 18),))
-              ],
+              SizedBox(height: 4,),
+              Divider(color: Colors.deepPurple,),
+              Row(
+                children: [
+                  SizedBox(
+                    width: MediaQuery.of(context).size.width/3,
+                    child: Row(children: [
+                      Icon(Icons.lock, color: Colors.blue,),
+                      SizedBox(width: 8,),
+                      Text("Pengguna", style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),)
+                    ],),
+                  ),
+                  Expanded(child: Text(' : $userName', style: TextStyle(fontSize: 18),)),
+                  Icon(Icons.edit)
+                ],
               ),
               SizedBox(height: 4,),
               Divider(color: Colors.deepPurple,),
@@ -92,8 +81,8 @@ class _ProfileScreenState extends State<ProfileScreen> {
                       Text("Nama", style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),)
                     ],),
                   ),
-                  Expanded(child: Text(' : $FullName', style: TextStyle(fontSize: 18),)),
-                  if(isSignedIn) const Icon(Icons.edit)
+                  Expanded(child: Text(' : $fullName', style: TextStyle(fontSize: 18),)),
+                  Icon(Icons.edit)
                 ],
               ),
               SizedBox(height: 4,),
@@ -108,11 +97,14 @@ class _ProfileScreenState extends State<ProfileScreen> {
                       Text("Favorit", style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),)
                     ],)
                   ),
+                  Expanded(child: Text(' : $favoriteCandiCount', style: TextStyle(fontSize: 18),)),
                 ],
-              )
+              ),
+              //Todo 4 Profile Action
+              SizedBox(height: 4),
+              Divider(color: Colors.deepPurple[100]),
+              SizedBox(height: 20),
             ],
-            
-            //Todo 4 Profile Action
           ),
         ],
       ),

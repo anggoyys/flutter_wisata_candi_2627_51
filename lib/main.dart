@@ -1,11 +1,21 @@
-import 'package:material_ui/material_ui.dart';
-import 'package:flutter_wisata_candi_2627_51/data/candi_data.dart';
-import 'package:flutter_wisata_candi_2627_51/screens/detail_screen.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter_wisata_candi_2627_51/provider/auth_provider.dart';
+import 'package:flutter_wisata_candi_2627_51/provider/favorit_provider.dart';
 import 'package:flutter_wisata_candi_2627_51/screens/profile.screen.dart';
-import 'package:flutter_wisata_candi_2627_51/screens/signin_screen.dart';
+import 'package:provider/provider.dart';
+
 
 void main() {
-  runApp(const MyApp());
+  runApp(
+    MultiProvider(
+      providers: [
+        ChangeNotifierProvider(create: (_) => FavoriteProvider()),
+        ChangeNotifierProvider(create: (_) => AuthProvider()),
+      ],
+      child: const MyApp(),
+    ),
+
+  );
 }
 
 class MyApp extends StatelessWidget {
